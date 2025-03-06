@@ -1,0 +1,343 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: workflow
+  name: profile-matcher
+  use_icon_as_answer_icon: false
+kind: app
+version: 0.1.5
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: document-extractor
+      id: 1737605908371-source-1737606043642-target
+      selected: false
+      source: '1737605908371'
+      sourceHandle: source
+      target: '1737606043642'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: document-extractor
+      id: 1737605908371--1737615230045-target
+      source: '1737605908371'
+      sourceHandle: source
+      target: '1737615230045'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: document-extractor
+        targetType: tool
+      id: 1737615230045-source-1738135621281-target
+      source: '1737615230045'
+      sourceHandle: source
+      target: '1738135621281'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: tool
+        targetType: tool
+      id: 1738135621281-source-1738135515348-target
+      source: '1738135621281'
+      sourceHandle: source
+      target: '1738135515348'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: tool
+        targetType: end
+      id: 1738135515348-source-1737614757931-target
+      source: '1738135515348'
+      sourceHandle: source
+      target: '1737614757931'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: document-extractor
+        targetType: tool
+      id: 1737606043642-source-1738142774955-target
+      source: '1737606043642'
+      sourceHandle: source
+      target: '1738142774955'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: tool
+        targetType: tool
+      id: 1738142774955-source-1738135621281-target
+      source: '1738142774955'
+      sourceHandle: source
+      target: '1738135621281'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: Start
+        type: start
+        variables:
+        - allowed_file_extensions: []
+          allowed_file_types:
+          - image
+          - document
+          allowed_file_upload_methods:
+          - local_file
+          - remote_url
+          label: cv
+          max_length: 48
+          options: []
+          required: true
+          type: file
+          variable: cv
+        - allowed_file_extensions: []
+          allowed_file_types:
+          - image
+          - document
+          allowed_file_upload_methods:
+          - local_file
+          - remote_url
+          label: jd
+          max_length: 48
+          options: []
+          required: true
+          type: file
+          variable: jd_csv
+      height: 116
+      id: '1737605908371'
+      position:
+        x: -216.93078646243217
+        y: 272.60345612460657
+      positionAbsolute:
+        x: -216.93078646243217
+        y: 272.60345612460657
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        is_array_file: false
+        selected: false
+        title: Doc Extractor
+        type: document-extractor
+        variable_selector:
+        - '1737605908371'
+        - cv
+      height: 92
+      id: '1737606043642'
+      position:
+        x: 98.34506618803988
+        y: 272.60345612460657
+      positionAbsolute:
+        x: 98.34506618803988
+        y: 272.60345612460657
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1738135515348'
+          - text
+          variable: text
+        selected: false
+        title: End
+        type: end
+      height: 90
+      id: '1737614757931'
+      position:
+        x: 1249.3835642079018
+        y: 387.82474147920203
+      positionAbsolute:
+        x: 1249.3835642079018
+        y: 387.82474147920203
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        is_array_file: false
+        selected: false
+        title: Doc Extractor 2
+        type: document-extractor
+        variable_selector:
+        - '1737605908371'
+        - jd_csv
+      height: 92
+      id: '1737615230045'
+      position:
+        x: 98.34506618803988
+        y: 387.82474147920203
+      positionAbsolute:
+        x: 98.34506618803988
+        y: 387.82474147920203
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        provider_id: json_process
+        provider_name: json_process
+        provider_type: builtin
+        selected: false
+        title: JSON Parse
+        tool_configurations:
+          ensure_ascii: 1
+        tool_label: JSON Parse
+        tool_name: parse
+        tool_parameters:
+          content:
+            type: mixed
+            value: '{{#1738135621281.text#}}'
+          json_filter:
+            type: mixed
+            value: result
+        type: tool
+      height: 90
+      id: '1738135515348'
+      position:
+        x: 972.9942370359106
+        y: 387.82474147920203
+      positionAbsolute:
+        x: 972.9942370359106
+        y: 387.82474147920203
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        provider_id: d6baeaf9-db9a-406e-b370-b9a1a39664b7
+        provider_name: matcher
+        provider_type: workflow
+        selected: false
+        title: matcher
+        tool_configurations: {}
+        tool_label: matcher
+        tool_name: match_profile
+        tool_parameters:
+          cv_text:
+            type: mixed
+            value: '{{#1738142774955.text#}}'
+          job_description:
+            type: mixed
+            value: '{{#1737615230045.text#}}'
+        type: tool
+      height: 54
+      id: '1738135621281'
+      position:
+        x: 690.5734220457756
+        y: 387.82474147920203
+      positionAbsolute:
+        x: 690.5734220457756
+        y: 387.82474147920203
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        provider_id: b9e19830-556f-4caf-99d0-e14f1391e21e
+        provider_name: cv_summariser
+        provider_type: workflow
+        selected: false
+        title: cv_summariser
+        tool_configurations: {}
+        tool_label: cv_summariser
+        tool_name: read_csv
+        tool_parameters:
+          cv_text:
+            type: mixed
+            value: '{{#1737606043642.text#}}'
+        type: tool
+      height: 54
+      id: '1738142774955'
+      position:
+        x: 398.9243949080021
+        y: 272.60345612460657
+      positionAbsolute:
+        x: 398.9243949080021
+        y: 272.60345612460657
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: -642.9139343807637
+      y: -31.059674494455663
+      zoom: 0.7232943140555165

@@ -1,0 +1,187 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: workflow
+  name: matcher
+  use_icon_as_answer_icon: false
+kind: app
+version: 0.1.5
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: llm
+      id: 1737614883680-source-1737615464362-target
+      source: '1737614883680'
+      sourceHandle: source
+      target: '1737615464362'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: end
+      id: 1737615464362-source-1738134481993-target
+      source: '1737615464362'
+      sourceHandle: source
+      target: '1738134481993'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: Start
+        type: start
+        variables:
+        - label: job_description
+          max_length: 20000
+          options: []
+          required: true
+          type: paragraph
+          variable: job_description
+        - label: cv_
+          max_length: 20000
+          options: []
+          required: true
+          type: paragraph
+          variable: cv_text
+      height: 116
+      id: '1737614883680'
+      position:
+        x: 80
+        y: 282
+      positionAbsolute:
+        x: 80
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: llama-3.1-8b-instant
+          provider: groq
+        prompt_template:
+        - id: 68dbe4d4-5da9-4388-a875-08e18ba3d8e8
+          role: system
+          text: "  role: >\n    Matcher\n  goal: >\n    Match the CV to the job opportunities\
+            \ based on skills and experience.\n  backstory: >\n    A seasoned recruiter,\
+            \ you specialize in finding the perfect fit between candidates and job\
+            \ roles.\n\ntask_description: >\n    Match the CV to the job opportunities\
+            \ based on skills, experience, and key\n    achievements.\n    Evaluate\
+            \ how well the candidate's profile fits each job description,\n    focusing\
+            \ on the alignment of skills, work history, and key achievements\n   \
+            \ with the job requirements.\n\n\n    Jobs CSV file: {{#1737614883680.job_description#}}\n\
+            \n    CV file: {{#1737614883680.cv_text#}}}\n  expected_output: >\n  \
+            \  A ranked list of job opportunities that best match the CV, including:\n\
+            \    - Job Title\n    - Match Score in percentage (based on skills and\
+            \ experience)\n    - Key Matching Points"
+        - id: 6bfc6899-85f5-4562-9afc-88d07f07952c
+          role: user
+          text: Match the user profile with appropriate  job profile following the
+            provided format.
+        selected: false
+        title: LLM
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '1737615464362'
+      position:
+        x: 384
+        y: 282
+      positionAbsolute:
+        x: 384
+        y: 282
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1737615464362'
+          - text
+          variable: text
+        selected: false
+        title: End
+        type: end
+      height: 90
+      id: '1738134481993'
+      position:
+        x: 710.8147068408413
+        y: 282
+      positionAbsolute:
+        x: 710.8147068408413
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: 75.5985173343771
+      y: -64.85815672044626
+      zoom: 0.8449350171557652
